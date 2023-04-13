@@ -1,1 +1,10 @@
-<p>skill-level-bar works!</p>
+<div class="bar-container">
+  <label *ngIf="name"><strong>{{ name }}</strong></label>
+  <div class="bar">
+    <div
+      class="bar-level"
+      *ngFor="let level of [].constructor(divisions)"
+    ></div>
+  </div>
+  <label *ngIf="label">{{ label }}</label>
+</div>

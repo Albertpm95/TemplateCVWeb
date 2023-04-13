@@ -1,34 +1,57 @@
 <div class="page" *ngIf="curriculum">
-    <div class="short-column">
-        <div class="small-container datos-personales" *ngIf="curriculum.personalDetails">
-            <h2>Personal details</h2>
-            <span>
-                <i class="fas fa-user"></i><strong>Name: </strong> Albert Pastor Martínez
-            </span>
-            <span *ngIf="curriculum.personalDetails.address">
-                <i [ngClass]="curriculum.personalDetails.address.icon"></i><strong>{{ curriculum.personalDetails.address.label }}: </strong>{{ curriculum.personalDetails.address.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.phoneNumber">
-                <i [ngClass]="curriculum.personalDetails.phoneNumber.icon"></i><strong>{{ curriculum.personalDetails.phoneNumber.label }}: </strong>{{ curriculum.personalDetails.phoneNumber.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.birthDate">
-                <i [ngClass]="curriculum.personalDetails.birthDate.icon"></i><strong>{{ curriculum.personalDetails.birthDate.label }}: </strong>{{ curriculum.personalDetails.birthDate.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.urlLinkedIn">
-                <i [ngClass]="curriculum.personalDetails.urlLinkedIn.icon"></i><strong>{{curriculum.personalDetails.urlLinkedIn.label}}: </strong><a (click)="goTo(curriculum.personalDetails.urlLinkedIn.value)">{{curriculum.personalDetails.urlLinkedIn.value}} </a>
-            </span>
-            <span *ngIf="curriculum.personalDetails.urlGithub">
-                <i [ngClass]="curriculum.personalDetails.urlGithub.icon"></i><strong>{{curriculum.personalDetails.urlGithub.label}}: </strong>
-                <a (click)="goTo(curriculum.personalDetails.urlGithub.value)">{{curriculum.personalDetails.urlGithub.value}} </a>
-            </span>
-        </div>
-        <div class="small-container skills">
-            <ul *ngFor="let skill of curriculum.skills">
-                <li *ngIf="skill">{{skill.name}} - {{skill.level}} - {{skill.years}}
-
-                </li>
-            </ul>
-        </div>
+  <div class="short-column">
+    <div
+      class="small-container datos-personales"
+      *ngIf="curriculum.personalDetails"
+    >
+      <h2>Personal details</h2>
+      <span>
+        <i class="fas fa-user"></i><strong>Name: </strong> Albert Pastor
+        Martínez
+      </span>
+      <span *ngIf="curriculum.personalDetails.address">
+        <i [ngClass]="curriculum.personalDetails.address.icon"></i
+        ><strong>{{ curriculum.personalDetails.address.label }}: </strong
+        >{{ curriculum.personalDetails.address.value }}
+      </span>
+      <span *ngIf="curriculum.personalDetails.phoneNumber">
+        <i [ngClass]="curriculum.personalDetails.phoneNumber.icon"></i
+        ><strong>{{ curriculum.personalDetails.phoneNumber.label }}: </strong
+        >{{ curriculum.personalDetails.phoneNumber.value }}
+      </span>
+      <span *ngIf="curriculum.personalDetails.birthDate">
+        <i [ngClass]="curriculum.personalDetails.birthDate.icon"></i
+        ><strong>{{ curriculum.personalDetails.birthDate.label }}: </strong
+        >{{ curriculum.personalDetails.birthDate.value }}
+      </span>
+      <span *ngIf="curriculum.personalDetails.urlLinkedIn">
+        <i [ngClass]="curriculum.personalDetails.urlLinkedIn.icon"></i
+        ><strong>{{ curriculum.personalDetails.urlLinkedIn.label }}: </strong
+        ><a href="{{curriculum.personalDetails.urlLinkedIn.value}}"
+          >{{ curriculum.personalDetails.urlLinkedIn.value }}
+        </a>
+      </span>
+      <span *ngIf="curriculum.personalDetails.urlGithub">
+        <i [ngClass]="curriculum.personalDetails.urlGithub.icon"></i
+        ><strong>{{ curriculum.personalDetails.urlGithub.label }}: </strong>
+        <a href="{{curriculum.personalDetails.urlGithub.value}}"
+          >{{ curriculum.personalDetails.urlGithub.value }}
+        </a>
+      </span>
     </div>
-    <div class="big-column"></div>
+    <div class="small-container skills">
+      <ul *ngFor="let skill of curriculum.skills">
+        <li *ngIf="skill">
+          <skill-level-bar
+            [name]="skill.name"
+            [label]="skill.label"
+            [divisions]="5"
+            [completed]="skill.completed"
+            [color]="'green'"
+          ></skill-level-bar>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="big-column"></div>
 </div>

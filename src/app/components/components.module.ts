@@ -5,11 +5,14 @@ import { SkillLevelBarComponent } from './skill-level-bar/skill-level-bar.compon
 
 
 @NgModule({
-  declarations: [
-    SkillLevelBarComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        SkillLevelBarComponent
+    ],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        SkillLevelBarComponent
+    ]
 })
 export class ComponentsModule { }
