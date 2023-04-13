@@ -1,13 +1,25 @@
 .bar-container
     display: flex
-    align-items: baseline
+    align-items: center
     flex-flow: row nowrap
+    width: 100%
+    margin-left: 1rem
+    span
+
+    .name
+        width: fit-content
+    .label
+        wdith: fit-content
     .bar
         height: 25px
-        margin: 0 1rem
         display: flex
         flex-flow: row nowrap
+        align-items: center
+        width: 25%
+        border: solid 1px white
+        margin: 0 1rem
         .bar-level
-            width: 15px
-            height: 25%
-            border: solid 1px white
+            width: 28px
+            height: 22px
+            background-color: #333
+

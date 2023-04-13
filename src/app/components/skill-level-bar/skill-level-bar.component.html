@@ -1,10 +1,12 @@
 <div class="bar-container">
-  <label *ngIf="name"><strong>{{ name }}</strong></label>
-  <div class="bar">
+  <span class="name" *ngIf="name"><strong>{{ name }}</strong></span><br>
+  <small class="subname" *ngIf="subname">{{subname}}</small>
+  <div class="bar" *ngIf="completed">
     <div
       class="bar-level"
-      *ngFor="let level of [].constructor(divisions)"
+      [ngStyle]="{'background-color': (i < completed) ? color : ''}"
+      *ngFor="let level of [].constructor(divisions); let i = index;"
     ></div>
   </div>
-  <label *ngIf="label">{{ label }}</label>
+  <span class="label" *ngIf="label">{{ label }}</span>
 </div>

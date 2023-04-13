@@ -8,20 +8,26 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'TemplateCVWeb';
 
+  colorAccent = 'lightgreen';
   curriculum = {
     personalDetails: {
+      email: {
+        label: 'Correo electrónico',
+        value: 'Albertpm95@outlook.com',
+        icon: 'fas fa-envelope',
+      },
       address: {
-        label: 'Address',
-        value: 'Av. Cardenal Benlloch, 60, 46021, Valencia',
+        label: 'Dirección',
+        value: 'Valencia',
         icon: 'fas fa-map-marker-alt',
       },
       phoneNumber: {
-        label: 'Phone Number',
+        label: 'Numero de teléfono',
         value: '+34 669 865 675',
         icon: 'fas fa-phone',
       },
       birthDate: {
-        label: 'Birth date',
+        label: 'Fecha de nacimiento',
         value: '8 Feb, 1995',
         icon: 'fas fa-birthday-cake',
       },
@@ -37,26 +43,69 @@ export class AppComponent {
       },
     },
     skills: [
-      { name: 'Angular', label: 'Intermediate', completed: 3 },
-      { name: 'FastAPI', label: 'Beginner', completed: 1 },
-      { name: 'Spring Boot', label: 'Beginner', completed: 1 },
+      {
+        name: 'Angular',
+        subname: 'HTML/CSS/Typescript',
+        label: '',
+        completed: 0,
+      },
+      { name: 'FastAPI', subname: 'Python', label: '', completed: 0 },
+      {
+        name: 'Spring Boot',
+        subname: 'Java',
+        label: '',
+        completed: 0,
+      },
     ],
     tools: [
       { name: 'Github' },
+      { name: 'Ubuntu' },
       { name: 'VSCode' },
       { name: 'Postman' },
-      { name: '' },
-      { name: '' },
     ],
-    experience: [
+    experiences: [
       {
         companyName: 'Engranage Lifestyle',
-        position: '',
-        startDate: '',
-        endDate: '',
-        achievements: [''],
+        position: 'Frontend Developer Jr.',
+        startDate: 'Abr 2022',
+        endDate: 'Feb 2023',
+        resume:
+          'Empresa pequeña con un producto/plataforma enfocado a la creación de eventos de reclutamiento para Universidades de EE.UU.',
+        achievements: [
+          'Desarrollo de nuevas funcionalidades y optimización del workflow para mejorar la experiencia del cliente en la plataforma.',
+          'Desarrollo de aplicación móvil con Angular e Ionic para el registro de usuarios mediante QR.',
+          'Análisis, mantenimiento y optimización de un gran proyecto heredado basado en formularios y datatables para la construcción de eventos informativos.',
+          'Diseño de web responsive modular para el landing de distintas páginas de eventos universitarios con CSS',
+        ],
+        stack: ['Angular v11', 'Ionic', 'Capacitor', 'Bootstrap', 'JQuery'],
+      },
+      {
+        companyName: 'Capgemini',
+        position: 'FullStack Developer Jr.',
+        startDate: 'Feb 2021',
+        endDate: 'Oct 2021',
+        resume: '',
+        achievements: [
+          'Desarrollo de aplicación interna para gestionar personal y equipos de trabajo. Testeo con Karma/Jasmine',
+          'Desarrollo de web responsive para el onboard de nuevos trabajadores en prácticas.',
+        ],
+        stack: ['Angular v12', 'Angular Material', 'Spring Boot', 'Postman'],
       },
     ],
-    education: [],
+    education: [
+      {
+        title: 'Grado en Ingenería Informática',
+        colleage: 'Universitat de Valencia',
+      },
+    ],
+    lenguages: [
+      { name: 'Español', label: 'Nativo', completed: 0 },
+      { name: 'Catalan', label: 'Nativo', completed: 0 },
+      {
+        name: 'English',
+        label: 'Intermedio',
+        completed: 0,
+      },
+    ],
   };
 }
