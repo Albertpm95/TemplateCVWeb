@@ -3,16 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { ExternalLinkDirective } from './directives/external-link.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    ComponentsModule
-  ],
+  declarations: [AppComponent, ExternalLinkDirective],
+  imports: [BrowserModule, ComponentsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
