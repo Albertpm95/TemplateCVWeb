@@ -91,11 +91,36 @@ export class AppComponent {
         ],
         stack: ['Angular v12', 'Angular Material', 'Spring Boot', 'Postman'],
       },
+      {
+        companyName: 'Ferchau',
+        position: 'Software Developer',
+        startDate: 'Abr 2021',
+        endDate: 'Act',
+        resume: 'Empresa alemana proveedora de servicios de Ingeneria e Informatica.',
+        achievements: [
+          'Desarrollo de aplicación interna para gestionar personal y equipos de trabajo. Testeo con Karma/Jasmine',
+          'Desarrollo de web responsive para el onboard de nuevos trabajadores en prácticas.',
+        ],
+        stack: ['Angular v12', 'Angular Material', 'Spring Boot', 'Postman'],
+      },
     ],
     education: [
       {
         title: 'Grado en Ingenería Informática',
         colleage: 'Universitat de Valencia',
+        skills: [
+          'C++',
+          'Java',
+          'C',
+          'Python',
+          'SQL',
+          'HTML',
+          'CSS3',
+          'JavaScript',
+          'Typescript',
+          'FastAPI',
+          'Angular',
+        ],
       },
     ],
     lenguages: [
