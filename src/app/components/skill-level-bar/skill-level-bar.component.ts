@@ -17,7 +17,32 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 </div>
 
   `,
-  styleUrls: ['./skill-level-bar.component.sass'],
+  styles: `
+  .bar-container
+    display: flex
+    align-items: center
+    flex-flow: row nowrap
+    width: 100%
+    margin-left: 1rem
+
+    .name
+        width: fit-content
+    .label
+        wdith: fit-content
+    .bar
+        height: 25px
+        display: flex
+        flex-flow: row nowrap
+        align-items: center
+        width: 25%
+        border: solid 1px white
+        margin: 0 1rem
+        .bar-level
+            width: 28px
+            height: 22px
+            background-color: #333
+
+`
 })
 export class SkillLevelBarComponent {
   @Input() name = '';
