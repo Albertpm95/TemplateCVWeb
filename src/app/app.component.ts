@@ -1,96 +1,100 @@
+/** @format */
+
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { SkillLevelBarComponent } from './components/skill-level-bar.component';
 
 @Component({
-  selector: 'app-root',
-  template: `<div class="page" *ngIf="curriculum">
-   <div class="header">
-      <span class="worker-name">Albert Pastor Martínez</span>
-      <span class="title">Angular Developer</span>
-   </div>
-   <div class="content">
-      <div class="short-column">
-         <div class="small-container datos-personales" *ngIf="curriculum.personalDetails">
-            <span class="section-title">Detalles personales</span>
-            <span *ngIf="curriculum.personalDetails.email">
-               <i [ngClass]="curriculum.personalDetails.email.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
-               curriculum.personalDetails.email.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.address">
-               <i [ngClass]="curriculum.personalDetails.address.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
-               curriculum.personalDetails.address.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.phoneNumber">
-               <i [ngClass]="curriculum.personalDetails.phoneNumber.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
-               curriculum.personalDetails.phoneNumber.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.birthDate">
-               <i [ngClass]="curriculum.personalDetails.birthDate.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
-               curriculum.personalDetails.birthDate.value }}
-            </span>
-            <span *ngIf="curriculum.personalDetails.urlLinkedIn">
-               <i [ngClass]="curriculum.personalDetails.urlLinkedIn.icon" [ngStyle]="{'color':  colorAccent }"></i><a
-                  href="{{ curriculum.personalDetails.urlLinkedIn.value }}">LinkedIn</a>
-            </span>
-            <span *ngIf="curriculum.personalDetails.urlGithub">
-               <i [ngClass]="curriculum.personalDetails.urlGithub.icon" [ngStyle]="{'color':  colorAccent }"></i><a
-                  href="{{ curriculum.personalDetails.urlGithub.value }}">GitHub</a>
-            </span>
-         </div>
-         <div class="small-container skills">
-            <span class="section-title">Habilidades</span>
-            <skill-level-bar *ngFor="let skill of curriculum.skills" [name]="skill.name" [subname]="skill.subname"
-               [label]="skill.label" [divisions]="10" [completed]="skill.completed"
-               [color]="colorAccent"></skill-level-bar>
-         </div>
-         <div class="small-container tools">
-            <span class="section-title">Herramientas</span>
-            <span class="tool" *ngFor="let tool of curriculum.tools">{{tool.name}}</span>
-         </div>
-         <div class="small-container lenguages">
-            <span class="section-title">Idiomas</span>
-            <skill-level-bar *ngFor="let lenguage of curriculum.lenguages" [name]="lenguage.name"
-               [label]="lenguage.label" [divisions]="10" [completed]="lenguage.completed"
-               [color]="colorAccent"></skill-level-bar>
-         </div>
-      </div>
-      <div class="big-column">
-         <div class="big-container experiences">
-            <span class="section-title">Experiencia</span>
-            <div class="experience" *ngFor="let experience of curriculum.experiences; let last = last;">
-               <div class="experience-header">
-                  <span class="company-name"><strong>Compañía:</strong> {{ experience.companyName }}</span>
-                  <span class="duration"><strong>{{ experience.startDate }} - {{ experience.endDate }}</strong></span>
-               </div>
-               <span class="position"><strong>Posición:</strong> {{ experience.position }}</span>
-               <div class="resume">
-                  <p *ngIf="experience.resume">{{ experience.resume }}</p>
-               </div>
-               <div class="achievements">
-                  <p class="achievement" *ngFor="let achievement of experience.achievements">{{ achievement }}</p>
-               </div>
-               <div class="stack">
-                  <span><strong>Stack utilizado:</strong></span><span class="tool"
-                     *ngFor="let tool of experience.stack; let last = last">{{tool}}<span *ngIf="!last"
-                        class="tool-separator"> - </span></span>
-               </div>
-               <div class="separator" [ngStyle]="{'background-color':  colorAccent }" *ngIf="!last"></div>
-            </div>
-         </div>
-         <div class="big-container titles">
-            <span class="section-title">Educación</span>
-            <div class="education" *ngFor="let education of curriculum.education">
-               <span class="title">
-                  <strong>{{ education.title }}</strong>
-               </span>
-               <span class="colleage">{{ education.colleage }}</span>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>`,
-  styles: `.page
+	selector: 'app-root',
+	template: `<div class="page" *ngIf="curriculum">
+		<div class="content">
+			<div class="short-column">
+				<div class="small-container lenguages">
+					<span class="section-title">Idiomas</span>
+					<skill-level-bar
+						*ngFor="let lenguage of curriculum.lenguages"
+						[name]="lenguage.name"
+						[label]="lenguage.label"
+						[divisions]="10"
+						[completed]="lenguage.completed"
+						[color]="colorAccent"></skill-level-bar>
+				</div>
+			</div>
+			<div class="big-column">
+				<div class="big-container experiences">
+					<span class="section-title">Experiencia</span>
+					<div
+						class="experience"
+						*ngFor="
+							let experience of curriculum.experiences;
+							let last = last
+						">
+						<div class="experience-header">
+							<span class="company-name"
+								><strong>Compañía:</strong>
+								{{ experience.companyName }}</span
+							>
+							<span class="duration"
+								><strong
+									>{{ experience.startDate }} -
+									{{ experience.endDate }}</strong
+								></span
+							>
+						</div>
+						<span class="position"
+							><strong>Posición:</strong>
+							{{ experience.position }}</span
+						>
+						<div class="resume">
+							<p *ngIf="experience.resume">
+								{{ experience.resume }}
+							</p>
+						</div>
+						<div class="achievements">
+							<p
+								class="achievement"
+								*ngFor="
+									let achievement of experience.achievements
+								">
+								{{ achievement }}
+							</p>
+						</div>
+						<div class="stack">
+							<span><strong>Stack utilizado:</strong></span
+							><span
+								class="tool"
+								*ngFor="
+									let tool of experience.stack;
+									let last = last
+								"
+								>{{ tool
+								}}<span *ngIf="!last" class="tool-separator">
+									-
+								</span></span
+							>
+						</div>
+						<div
+							class="separator"
+							[ngStyle]="{ 'background-color': colorAccent }"
+							*ngIf="!last"></div>
+					</div>
+				</div>
+				<div class="big-container titles">
+					<span class="section-title">Educación</span>
+					<div
+						class="education"
+						*ngFor="let education of curriculum.education">
+						<span class="title">
+							<strong>{{ education.title }}</strong>
+						</span>
+						<span class="colleage">{{ education.colleage }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>`,
+	styles: `.page
     height: 100%
     width: 100%
     display: flex
@@ -167,147 +171,156 @@ import { SkillLevelBarComponent } from './components/skill-level-bar.component';
                     display: flex
 
 `,
-  standalone: true,
-  imports: [CommonModule, SkillLevelBarComponent]
+	standalone: true,
+	imports: [CommonModule, SkillLevelBarComponent, RouterOutlet]
 })
 export class AppComponent {
-  title = 'TemplateCVWeb';
+	title = 'TemplateCVWeb';
 
-  colorAccent = 'lightgreen';
-  curriculum = {
-    personalDetails: {
-      email: {
-        label: 'Correo electrónico',
-        value: 'Albertpm95@outlook.com',
-        icon: 'fas fa-envelope',
-      },
-      address: {
-        label: 'Dirección',
-        value: 'Valencia',
-        icon: 'fas fa-map-marker-alt',
-      },
-      phoneNumber: {
-        label: 'Numero de teléfono',
-        value: '+34 669 865 675',
-        icon: 'fas fa-phone',
-      },
-      birthDate: {
-        label: 'Fecha de nacimiento',
-        value: '8 Feb, 1995',
-        icon: 'fas fa-birthday-cake',
-      },
-      urlLinkedIn: {
-        label: 'LinkedIn',
-        value: 'https://www.linkedin.com/in/albertpm95/',
-        icon: 'fab fa-linkedin',
-      },
-      urlGithub: {
-        label: 'GitHub',
-        value: 'https://github.com/Albertpm95',
-        icon: 'fab fa-github',
-      },
-    },
-    skills: [
-      {
-        name: 'Angular',
-        subname: 'HTML/CSS/Typescript',
-        label: '',
-        completed: 0,
-      },
-      { name: 'FastAPI', subname: 'Python', label: '', completed: 0 },
-      {
-        name: 'Spring Boot',
-        subname: 'Java',
-        label: '',
-        completed: 0,
-      },
-    ],
-    tools: [
-      { name: 'Github' },
-      { name: 'Ubuntu' },
-      { name: 'VSCode' },
-      { name: 'Postman' },
-    ],
-    experiences: [
-      {
-        companyName: 'Ferchau',
-        position: 'Software Developer',
-        startDate: 'Abr 2021',
-        endDate: 'Act',
-        resume:
-          'Empresa alemana proveedora de servicios de Ingeneria e Informatica.',
-        achievements: [
-          'Desarrollo de una PoC para una gran empresa del sector de distribucion generalista.',
-          'Identifique y corregi diversas funciones problematicas del backend.',
-          'Propuse la reestructuracion y simplificacion de parte del backend para mejorar la legibilidad y mantenimeinto del codigo.',
-          'Lideré el proceso de pruebas del despliegue de la aplicacion tanto en servidor interno como el servidor de integracion del cliente.',
-          'Participé en todas las reuniones relacionadas con la prueba y desarrollo de la aplicación, ofreciendo mis conocimientos y perspectivas para mejorar el producto final.',
-          'Colaboré estrechamente con el equipo para garantizar la calidad y cumplimiento de los requisitos en cada etapa del proyecto.',
-        ],
-        stack: [
-          'Angular v14',
-          'Spring Boot',
-          'Linux',
-          'Nginx',
-          'Sonarlint',
-          'Karma/Jasmine',
-        ],
-      },
-      {
-        companyName: 'Capgemini',
-        position: 'FullStack Developer Jr.',
-        startDate: 'Feb 2021',
-        endDate: 'Oct 2021',
-        resume: '',
-        achievements: [
-          'Desarrollo de aplicación interna para gestionar personal y equipos de trabajo. Testeo con Karma/Jasmine',
-          'Desarrollo de web responsive para el onboard de nuevos trabajadores en prácticas.',
-        ],
-        stack: ['Angular v12', 'Angular Material', 'Spring Boot', 'Postman'],
-      },
-      {
-        companyName: 'Engranage Lifestyle',
-        position: 'Frontend Developer Jr.',
-        startDate: 'Abr 2022',
-        endDate: 'Feb 2023',
-        resume:
-          'Empresa pequeña con un producto/plataforma enfocado a la creación de eventos de reclutamiento para Universidades de EE.UU.',
-        achievements: [
-          'Desarrollo de nuevas funcionalidades y optimización del workflow para mejorar la experiencia del cliente en la plataforma.',
-          'Desarrollo de aplicación móvil con Angular e Ionic para el registro de usuarios mediante QR.',
-          'Análisis, mantenimiento y optimización de un gran proyecto heredado basado en formularios y datatables para la construcción de eventos informativos.',
-          'Diseño de web responsive modular para el landing de distintas páginas de eventos universitarios con CSS',
-        ],
-        stack: ['Angular v11', 'Ionic', 'Capacitor', 'Bootstrap', 'JQuery'],
-      },
-    ],
-    education: [
-      {
-        title: 'Grado en Ingenería Informática',
-        colleage: 'Universitat de Valencia',
-        skills: [
-          'C++',
-          'Java',
-          'C',
-          'Python',
-          'SQL',
-          'HTML',
-          'CSS3',
-          'JavaScript',
-          'Typescript',
-          'FastAPI',
-          'Angular',
-        ],
-      },
-    ],
-    lenguages: [
-      { name: 'Español', label: 'Nativo', completed: 0 },
-      { name: 'Catalan', label: 'Nativo', completed: 0 },
-      {
-        name: 'English',
-        label: 'Intermedio',
-        completed: 0,
-      },
-    ],
-  };
+	colorAccent = 'lightgreen';
+	curriculum = {
+		personalDetails: {
+			email: {
+				label: 'Correo electrónico',
+				value: 'Albertpm95@outlook.com',
+				icon: 'fas fa-envelope'
+			},
+			address: {
+				label: 'Dirección',
+				value: 'Valencia',
+				icon: 'fas fa-map-marker-alt'
+			},
+			phoneNumber: {
+				label: 'Numero de teléfono',
+				value: '+34 669 865 675',
+				icon: 'fas fa-phone'
+			},
+			birthDate: {
+				label: 'Fecha de nacimiento',
+				value: '8 Feb, 1995',
+				icon: 'fas fa-birthday-cake'
+			},
+			urlLinkedIn: {
+				label: 'LinkedIn',
+				value: 'https://www.linkedin.com/in/albertpm95/',
+				icon: 'fab fa-linkedin'
+			},
+			urlGithub: {
+				label: 'GitHub',
+				value: 'https://github.com/Albertpm95',
+				icon: 'fab fa-github'
+			}
+		},
+		skills: [
+			{
+				name: 'Angular',
+				subname: 'HTML/CSS/Typescript',
+				label: '',
+				completed: 0
+			},
+			{ name: 'FastAPI', subname: 'Python', label: '', completed: 0 },
+			{
+				name: 'Spring Boot',
+				subname: 'Java',
+				label: '',
+				completed: 0
+			}
+		],
+		tools: [
+			{ name: 'Github' },
+			{ name: 'Ubuntu' },
+			{ name: 'VSCode' },
+			{ name: 'Postman' }
+		],
+		experiences: [
+			{
+				companyName: 'Ferchau',
+				position: 'Software Developer',
+				startDate: 'Abr 2021',
+				endDate: 'Act',
+				resume: 'Empresa alemana proveedora de servicios de Ingeneria e Informatica.',
+				achievements: [
+					'Desarrollo de una PoC para una gran empresa del sector de distribucion generalista.',
+					'Identifique y corregi diversas funciones problematicas del backend.',
+					'Propuse la reestructuracion y simplificacion de parte del backend para mejorar la legibilidad y mantenimeinto del codigo.',
+					'Lideré el proceso de pruebas del despliegue de la aplicacion tanto en servidor interno como el servidor de integracion del cliente.',
+					'Participé en todas las reuniones relacionadas con la prueba y desarrollo de la aplicación, ofreciendo mis conocimientos y perspectivas para mejorar el producto final.',
+					'Colaboré estrechamente con el equipo para garantizar la calidad y cumplimiento de los requisitos en cada etapa del proyecto.'
+				],
+				stack: [
+					'Angular v14',
+					'Spring Boot',
+					'Linux',
+					'Nginx',
+					'Sonarlint',
+					'Karma/Jasmine'
+				]
+			},
+			{
+				companyName: 'Capgemini',
+				position: 'FullStack Developer Jr.',
+				startDate: 'Feb 2021',
+				endDate: 'Oct 2021',
+				resume: '',
+				achievements: [
+					'Desarrollo de aplicación interna para gestionar personal y equipos de trabajo. Testeo con Karma/Jasmine',
+					'Desarrollo de web responsive para el onboard de nuevos trabajadores en prácticas.'
+				],
+				stack: [
+					'Angular v12',
+					'Angular Material',
+					'Spring Boot',
+					'Postman'
+				]
+			},
+			{
+				companyName: 'Engranage Lifestyle',
+				position: 'Frontend Developer Jr.',
+				startDate: 'Abr 2022',
+				endDate: 'Feb 2023',
+				resume: 'Empresa pequeña con un producto/plataforma enfocado a la creación de eventos de reclutamiento para Universidades de EE.UU.',
+				achievements: [
+					'Desarrollo de nuevas funcionalidades y optimización del workflow para mejorar la experiencia del cliente en la plataforma.',
+					'Desarrollo de aplicación móvil con Angular e Ionic para el registro de usuarios mediante QR.',
+					'Análisis, mantenimiento y optimización de un gran proyecto heredado basado en formularios y datatables para la construcción de eventos informativos.',
+					'Diseño de web responsive modular para el landing de distintas páginas de eventos universitarios con CSS'
+				],
+				stack: [
+					'Angular v11',
+					'Ionic',
+					'Capacitor',
+					'Bootstrap',
+					'JQuery'
+				]
+			}
+		],
+		education: [
+			{
+				title: 'Grado en Ingenería Informática',
+				colleage: 'Universitat de Valencia',
+				skills: [
+					'C++',
+					'Java',
+					'C',
+					'Python',
+					'SQL',
+					'HTML',
+					'CSS3',
+					'JavaScript',
+					'Typescript',
+					'FastAPI',
+					'Angular'
+				]
+			}
+		],
+		lenguages: [
+			{ name: 'Español', label: 'Nativo', completed: 0 },
+			{ name: 'Catalan', label: 'Nativo', completed: 0 },
+			{
+				name: 'English',
+				label: 'Intermedio',
+				completed: 0
+			}
+		]
+	};
 }
