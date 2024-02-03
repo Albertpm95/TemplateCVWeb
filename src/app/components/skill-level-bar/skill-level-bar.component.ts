@@ -1,21 +1,23 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'skill-level-bar',
   template: `
-  <div class="bar-container">
-  <span class="name" *ngIf="name"><strong>{{ name }}</strong></span><br>
-  <small class="subname" *ngIf="subname">{{subname}}</small>
-  <div class="bar" *ngIf="completed">
-    <div
-      class="bar-level"
-      [ngStyle]="{'background-color': (i < completed) ? color : ''}"
-      *ngFor="let level of [].constructor(divisions); let i = index;"
-    ></div>
-  </div>
-  <span class="label" *ngIf="label">{{ label }}</span>
-</div>
-
+    <div class="bar-container">
+      <span class="name" *ngIf="name"
+        ><strong>{{ name }}</strong></span
+      ><br />
+      <small class="subname" *ngIf="subname">{{ subname }}</small>
+      <div class="bar" *ngIf="completed">
+        <div
+          class="bar-level"
+          [ngStyle]="{ 'background-color': i < completed ? color : '' }"
+          *ngFor="let level of [].constructor(divisions); let i = index"
+        ></div>
+      </div>
+      <span class="label" *ngIf="label">{{ label }}</span>
+    </div>
   `,
   styles: `
   .bar-container
@@ -42,7 +44,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
             height: 22px
             background-color: #333
 
-`
+`,
+  standalone: true,
+  imports: [CommonModule]
 })
 export class SkillLevelBarComponent {
   @Input() name = '';
