@@ -1,9 +1,174 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { SkillLevelBarComponent } from './components/skill-level-bar.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
+  template: `<div class="page" *ngIf="curriculum">
+   <div class="header">
+      <span class="worker-name">Albert Pastor Martínez</span>
+      <span class="title">Angular Developer</span>
+   </div>
+   <div class="content">
+      <div class="short-column">
+         <div class="small-container datos-personales" *ngIf="curriculum.personalDetails">
+            <span class="section-title">Detalles personales</span>
+            <span *ngIf="curriculum.personalDetails.email">
+               <i [ngClass]="curriculum.personalDetails.email.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
+               curriculum.personalDetails.email.value }}
+            </span>
+            <span *ngIf="curriculum.personalDetails.address">
+               <i [ngClass]="curriculum.personalDetails.address.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
+               curriculum.personalDetails.address.value }}
+            </span>
+            <span *ngIf="curriculum.personalDetails.phoneNumber">
+               <i [ngClass]="curriculum.personalDetails.phoneNumber.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
+               curriculum.personalDetails.phoneNumber.value }}
+            </span>
+            <span *ngIf="curriculum.personalDetails.birthDate">
+               <i [ngClass]="curriculum.personalDetails.birthDate.icon" [ngStyle]="{'color':  colorAccent }"></i>{{
+               curriculum.personalDetails.birthDate.value }}
+            </span>
+            <span *ngIf="curriculum.personalDetails.urlLinkedIn">
+               <i [ngClass]="curriculum.personalDetails.urlLinkedIn.icon" [ngStyle]="{'color':  colorAccent }"></i><a
+                  href="{{ curriculum.personalDetails.urlLinkedIn.value }}">LinkedIn</a>
+            </span>
+            <span *ngIf="curriculum.personalDetails.urlGithub">
+               <i [ngClass]="curriculum.personalDetails.urlGithub.icon" [ngStyle]="{'color':  colorAccent }"></i><a
+                  href="{{ curriculum.personalDetails.urlGithub.value }}">GitHub</a>
+            </span>
+         </div>
+         <div class="small-container skills">
+            <span class="section-title">Habilidades</span>
+            <skill-level-bar *ngFor="let skill of curriculum.skills" [name]="skill.name" [subname]="skill.subname"
+               [label]="skill.label" [divisions]="10" [completed]="skill.completed"
+               [color]="colorAccent"></skill-level-bar>
+         </div>
+         <div class="small-container tools">
+            <span class="section-title">Herramientas</span>
+            <span class="tool" *ngFor="let tool of curriculum.tools">{{tool.name}}</span>
+         </div>
+         <div class="small-container lenguages">
+            <span class="section-title">Idiomas</span>
+            <skill-level-bar *ngFor="let lenguage of curriculum.lenguages" [name]="lenguage.name"
+               [label]="lenguage.label" [divisions]="10" [completed]="lenguage.completed"
+               [color]="colorAccent"></skill-level-bar>
+         </div>
+      </div>
+      <div class="big-column">
+         <div class="big-container experiences">
+            <span class="section-title">Experiencia</span>
+            <div class="experience" *ngFor="let experience of curriculum.experiences; let last = last;">
+               <div class="experience-header">
+                  <span class="company-name"><strong>Compañía:</strong> {{ experience.companyName }}</span>
+                  <span class="duration"><strong>{{ experience.startDate }} - {{ experience.endDate }}</strong></span>
+               </div>
+               <span class="position"><strong>Posición:</strong> {{ experience.position }}</span>
+               <div class="resume">
+                  <p *ngIf="experience.resume">{{ experience.resume }}</p>
+               </div>
+               <div class="achievements">
+                  <p class="achievement" *ngFor="let achievement of experience.achievements">{{ achievement }}</p>
+               </div>
+               <div class="stack">
+                  <span><strong>Stack utilizado:</strong></span><span class="tool"
+                     *ngFor="let tool of experience.stack; let last = last">{{tool}}<span *ngIf="!last"
+                        class="tool-separator"> - </span></span>
+               </div>
+               <div class="separator" [ngStyle]="{'background-color':  colorAccent }" *ngIf="!last"></div>
+            </div>
+         </div>
+         <div class="big-container titles">
+            <span class="section-title">Educación</span>
+            <div class="education" *ngFor="let education of curriculum.education">
+               <span class="title">
+                  <strong>{{ education.title }}</strong>
+               </span>
+               <span class="colleage">{{ education.colleage }}</span>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>`,
+  styles: `.page
+    height: 100%
+    width: 100%
+    display: flex
+    flex-flow: column nowrap
+    .header
+        width: 100%
+        padding: 2.5rem 0
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        .worker-name
+            font-size: 6rem
+            margin: 2rem 0
+        .title
+            font-size: 3rem
+    .content
+        display: flex
+        width: 100%
+        height: 100%
+        flex-direction: row
+        .short-column
+            display: flex
+            flex-direction: column
+            width: fit-content
+            padding: 0 1rem
+            .small-container
+                display: flex
+                flex-flow: column nowrap
+                width: 100%
+                margin: 1rem 0
+                skill-level-bar
+                    margin: 1rem 0
+            .tools
+                .tool
+                    margin-left: 1rem
+        .big-column
+            display: flex
+            flex-direction: column
+            width: fit-content
+            padding: 0 1rem
+            color: #333
+            background-color: whitesmoke
+            .big-container
+                display: flex
+                flex-flow: column nowrap
+                width: fit-content
+                margin: 1rem 0
+                .experience
+                    display: flex
+                    flex-flow: column
+                    .experience-header
+                        display: flex
+                        flex-flow: row nowrap
+                        justify-content: space-between
+                .resume
+                    p
+                        padding-left: 0
+                        margin-left: 0
+                .achievements
+                    padding-left: 1rem
+                .stack
+                    display: flex
+                    flex-direction: row
+                    .tool-separator
+                        margin: auto 1rem
+                .separator
+                    width: 100%
+                    height: 8px
+                    width: 25%
+                    margin: 2rem auto
+                    border-radius: 4px
+                titles
+                    display: flex
+
+`,
+  standalone: true,
+  imports: [CommonModule, SkillLevelBarComponent]
 })
 export class AppComponent {
   title = 'TemplateCVWeb';
