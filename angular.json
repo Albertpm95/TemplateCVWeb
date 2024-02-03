@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "TemplateCVWeb:build:production"
+              "buildTarget": "TemplateCVWeb:build:production"
             },
             "development": {
-              "browserTarget": "TemplateCVWeb:build:development"
+              "buildTarget": "TemplateCVWeb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "TemplateCVWeb:build"
+            "buildTarget": "TemplateCVWeb:build"
           }
         },
         "test": {
